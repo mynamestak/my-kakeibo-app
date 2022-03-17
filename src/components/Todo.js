@@ -33,6 +33,7 @@ const Todo = () => {
             }
             return item;
         })
+        console.log(updated);
         setItems(updated);
         setIsEditting(null);
         setTextEditValue('');
@@ -43,7 +44,7 @@ const Todo = () => {
     };
 
     const toggleEdit = (value, index) => {
-        setIsEditting(index + 1);
+        setIsEditting(index + 1) //;
         setTextEditValue(value);
     };
 

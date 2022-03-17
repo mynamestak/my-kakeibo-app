@@ -1,22 +1,23 @@
 import React, { useEffect } from 'react';
 
-const IncomeTotal = ({incomeAmounts, incomeResult, setIncomeResult, decreNum, setDecreNum}) => {
+const IncomeTotal = ({incomes, incomeAmounts, incomeResult, setIncomeResult}) => {
 
+
+    useEffect(() => {
+        setIncomeResult(incomeAmounts.reduce(reducer));
+    }, []);
 
     useEffect(() => {
         setIncomeResult(incomeAmounts.reduce(reducer));
     }, [incomeAmounts]);
 
     const reducer = (sum,currentValue) => sum + currentValue;
-    // incomeResult = incomeAmounts.reduce(reducer) - decreNum;
 
-    console.log(incomeAmounts);
-    console.log(incomeResult + "  -  " + decreNum);
     
   
     return(
         <div>
-            <p>あなたの収入は{incomeResult - decreNum}です。</p>
+            <p>あなたの収入は{incomeResult}です。</p>
         </div>
     );
 }

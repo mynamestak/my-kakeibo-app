@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
 
-const InputForm = ({incomeInputText, setIncomeInputText, incomes, setIncomes, incomeInputNum, setIncomeInputNum, incomeAmounts, setIncomeAmounts, incomeCount, setIncomeCount}) => {
+const InputForm = ({incomes, setIncomes, incomeAmounts, setIncomeAmounts}) => {
 
+    const [incomeInputText, setIncomeInputText] = useState('');
+    const [incomeInputNum, setIncomeInputNum] = useState('');
+    const [incomeCount, setIncomeCount] = useState(1);
+
+    
     const incomeInputHandler = (e) => {
         setIncomeInputText(e.target.value);
     }
@@ -11,14 +16,14 @@ const InputForm = ({incomeInputText, setIncomeInputText, incomes, setIncomes, in
 
     const incomeSubmitHandler = (e) => {
         e.preventDefault();
-        setIncomeCount((prevCount) => prevCount + 1);
         setIncomes([
-            ...incomes, {incomeText: incomeInputText, incomeNum: incomeInputNum, incomeOrder: incomeCount, id:Math.random()*1000}
+            ...incomes, {incomeText: incomeInputText, incomeNum: incomeInputNum, id:incomeCount}
         ]);
 
         setIncomeAmounts([
             ...incomeAmounts, parseInt(incomeInputNum)
         ]);
+        setIncomeCount((prevCount) => prevCount + 1);
 
         setIncomeInputText('');
         setIncomeInputNum('');

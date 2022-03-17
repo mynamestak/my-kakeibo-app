@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const ExpenseForm = ({expenseInputText, setExpenseInputText, expenses, setExpenses, expenseInputNum, setExpenseInputNum, expenseAmounts, setExpenseAmounts}) => {
+const ExpenseForm = ({expenses, setExpenses, expenseAmounts, setExpenseAmounts}) => {
 
+    const [expenseInputText, setExpenseInputText] = useState('');
+    const [expenseInputNum, setExpenseInputNum] = useState('');
+
+    
     const expenseInputHandler = (e) => {
         setExpenseInputText(e.target.value);
     }

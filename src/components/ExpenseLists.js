@@ -1,7 +1,7 @@
 import React from 'react';
 import ExpenseList from './ExpenseList';
 
-const ExpenseLists = ({expenses, setExpenses}) => {
+const ExpenseLists = ({expenses, setExpenses, expenseAmounts, setExpenseAmounts}) => {
     return(
         <ul>
             {expenses.map(expense => (
@@ -9,9 +9,11 @@ const ExpenseLists = ({expenses, setExpenses}) => {
                     expense={expense}
                     expenses={expenses}
                     expenseText={expense.expenseText}
-                    key={expense.id}
+                    id={expense.id}
                     setExpenses={setExpenses}
                     expenseNum={expense.expenseNum}
+                    expenseAmounts={expenseAmounts}
+                    setExpenseAmounts={setExpenseAmounts}
                 />
             ))}
         </ul>
