@@ -29,12 +29,16 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
     const onHandleEdit = () => {
         const updated = incomes.map((income) => {
             if(income.id === isEditting - 1){ //配列の数字とIncomeFormで作成するidを比較する。
-                income = {incomeText: editTextValue, incomeNum: editNumValue, id: id}; // incomeTextだけ変更を反映する。
+                income = {incomeText: editTextValue, incomeNum: editNumValue, id: id}; // incomeNumとincomeTextだけ変更を反映する。
             }
             return income;
         })
         setIncomes(updated); // 変更した配列丸ごとで更新
-        setIsEditting(false);     
+        setIsEditting(false);    
+        setIncomeAmounts(
+            incomeAmounts.map((incomeAmount, id) => (id === isEditting -1 ? Number(editNumValue) : incomeAmount))
+        );
+
    
     };
     // console.log(incomeAmounts);
