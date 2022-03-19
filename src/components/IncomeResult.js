@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 
-const IncomeTotal = ({incomes, incomeAmounts, incomeResult, setIncomeResult}) => {
+const IncomeTotal = ({incomeAmounts, incomeResult, setIncomeResult}) => {
 
 
-    useEffect(() => {
-        setIncomeResult(incomeAmounts.reduce(reducer));
-    }, []);
+    // useEffect(() => {
+    //     setIncomeResult(incomeAmounts.reduce(reducer));
+    // }, []);
 
     useEffect(() => {
         setIncomeResult(incomeAmounts.reduce(reducer));
