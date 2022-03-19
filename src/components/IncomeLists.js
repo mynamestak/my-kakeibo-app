@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import IncomeList from './IncomeList';
+import { IncomesContext } from '../IncomesContext';
 
-const IncomeLists = ({incomes, setIncomes, incomeAmounts, setIncomeAmounts}) => {
+const IncomeLists = ({incomeAmounts, setIncomeAmounts}) => {
 
+    const [incomes, setIncomes] = useContext(IncomesContext);
 
     return(
         <div>
