@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeAmounts, setIncomeAmounts, id, index}) => {
+const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeAmounts, setIncomeAmounts, id}) => {
 
     const [ isEditting, setIsEditting ] = useState(null);
     const [ editTextValue, setEditTextValue ] = useState('');
@@ -11,7 +11,6 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
         setIncomeAmounts(incomeAmounts.filter(el => el !== Number(incomeNum)));
     }
     
-
     const editToggle = () => {
         setIsEditting(id + 1); //←nullの状態から数字を入れるとtrueになる。
         setEditTextValue(incomeText);
