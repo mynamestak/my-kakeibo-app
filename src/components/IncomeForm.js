@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import { IncomesContext } from '../IncomesContext';
 
-const InputForm = ({incomes, setIncomes, incomeAmounts, setIncomeAmounts}) => {
+const InputForm = ({incomeAmounts, setIncomeAmounts}) => {
 
+    const [incomes, setIncomes] = useContext(IncomesContext);
     const [incomeInputText, setIncomeInputText] = useState('');
     const [incomeInputNum, setIncomeInputNum] = useState('');
     const [incomeCount, setIncomeCount] = useState(1);
