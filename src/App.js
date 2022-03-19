@@ -68,10 +68,11 @@ function App() {
         expenseResult={expenseResult}
         setExpenseResult={setExpenseResult}
         />
+      */}
 
-      <Balance incomeAmounts={incomeAmounts} expenseAmounts={expenseAmounts}/> */}
+      <Balance incomeAmounts={incomeAmounts} expenseAmounts={expenseAmounts}/> 
 
-      <Todo/>
+      {/* <Todo/> */}
     </div>
   );
 }

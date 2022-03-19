@@ -7,7 +7,6 @@ const IncomeLists = ({incomes, setIncomes, incomeAmounts, setIncomeAmounts}) => 
     return(
         <div>
             <ul>
-                クリックすると編集できます。
                 {incomes.map((income, index) => (
                     <IncomeList 
                         income={income}

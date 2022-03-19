@@ -50,7 +50,8 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
         <div>
             { !isEditting &&
                 <li>
-                    <span onClick={editToggle}>{incomeText}</span>に<span onClick={editToggle}>{incomeNum}</span>稼ぎました。
+                    <span>{incomeText}</span>で<span>{incomeNum}円</span>稼ぎました。
+                    <button onClick={editToggle}>編集</button>
                     <button onClick={incomeDeleteHandler}>削除</button>
                 </li>            
             }
