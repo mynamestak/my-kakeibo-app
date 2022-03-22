@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import IncomeForm from './components/IncomeForm';
 import IncomeLists from './components/IncomeLists';
 import IncomeResult from './components/IncomeResult';
@@ -8,13 +8,14 @@ import ExpenseLists from './components/ExpenseLists';
 import ExpenseResult from './components/ExpenseResult';
 import Balance from './components/Balance';
 import DateHeader from './components/DateHeader';
+import { IncomesProvider } from './IncomesContext';
 
+
+// しょうすけの例文
 import Todo from './components/Todo';
 
 function App() {
 
-  // 収入
-  const [incomes, setIncomes] = useState([]);
 
   // 収入合計するためのstate
   const [incomeResult, setIncomeResult] = useState(0);
@@ -33,24 +34,23 @@ function App() {
     <div className="App">
       {/* <DateHeader 
         /> */}
-      <IncomeForm 
-        incomes={incomes}
-        setIncomes={setIncomes}
-        incomeAmounts={incomeAmounts}
-        setIncomeAmounts={setIncomeAmounts}
-        />
-      <IncomeLists 
-        incomes={incomes} 
-        setIncomes={setIncomes}
-        incomeAmounts={incomeAmounts}
-        setIncomeAmounts={setIncomeAmounts}
-        />
-      <IncomeResult 
-        incomes={incomes}
-        incomeResult={incomeResult}
-        setIncomeResult={setIncomeResult}
-        incomeAmounts={incomeAmounts} 
-        />
+        <IncomesProvider>
+          <IncomeForm 
+            incomeAmounts={incomeAmounts}
+            setIncomeAmounts={setIncomeAmounts}
+            />
+
+          <IncomeLists 
+            incomeAmounts={incomeAmounts}
+            setIncomeAmounts={setIncomeAmounts}
+            />
+        </IncomesProvider>
+          <IncomeResult 
+            incomeResult={incomeResult}
+            setIncomeResult={setIncomeResult}
+            incomeAmounts={incomeAmounts} 
+            />
+
         
       {/* <ExpenseForm
         setExpenses={setExpenses}
@@ -70,7 +70,7 @@ function App() {
         />
       */}
 
-      <Balance incomeAmounts={incomeAmounts} expenseAmounts={expenseAmounts}/> 
+      {/* <Balance incomeAmounts={incomeAmounts} expenseAmounts={expenseAmounts}/>  */}
 
       {/* <Todo/> */}
     </div>
