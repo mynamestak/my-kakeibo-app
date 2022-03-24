@@ -9,12 +9,18 @@ import ExpenseResult from './components/ExpenseResult';
 import Balance from './components/Balance';
 import DateHeader from './components/DateHeader';
 import { IncomesProvider } from './IncomesContext';
-
+import { DateProvider } from './DateContext';
+// import { FilteredIncomesProvider } from './IncomesContext';
 
 // しょうすけの例文
 import Todo from './components/Todo';
 
 function App() {
+
+
+
+  const [date, setDate] = useState(new Date()); 
+  const [filteredIncomes, setFilteredIncomes] = useState([]);
 
 
   // 収入合計するためのstate
@@ -30,26 +36,40 @@ function App() {
 
 
 
+
+
+
+
   return (
     <div className="App">
-      {/* <DateHeader 
-        /> */}
-        <IncomesProvider>
-          <IncomeForm 
-            incomeAmounts={incomeAmounts}
-            setIncomeAmounts={setIncomeAmounts}
-            />
+        <DateProvider>
 
-          <IncomeLists 
-            incomeAmounts={incomeAmounts}
-            setIncomeAmounts={setIncomeAmounts}
-            />
-        </IncomesProvider>
-          <IncomeResult 
+            <DateHeader  date={date} setDate={setDate}/>
+            <IncomesProvider>
+              <IncomeForm 
+                incomeAmounts={incomeAmounts}
+                setIncomeAmounts={setIncomeAmounts}
+              />
+              <IncomeLists 
+                incomeAmounts={incomeAmounts}
+                setIncomeAmounts={setIncomeAmounts}
+                date={date} 
+                setDate={setDate}
+                filteredIncomes={filteredIncomes}
+                setFilteredIncomes={setFilteredIncomes}
+
+              />
+            </IncomesProvider>
+
+
+        </DateProvider>
+
+          {/* <IncomeResult 
             incomeResult={incomeResult}
             setIncomeResult={setIncomeResult}
             incomeAmounts={incomeAmounts} 
-            />
+            /> */}
+
 
         
       {/* <ExpenseForm
