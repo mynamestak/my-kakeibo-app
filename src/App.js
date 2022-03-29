@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect, useState, useContext} from 'react';
+import React, { useState } from 'react';
 import IncomeForm from './components/IncomeForm';
 import IncomeLists from './components/IncomeLists';
 import IncomeResult from './components/IncomeResult';
@@ -10,6 +10,7 @@ import Balance from './components/Balance';
 import DateHeader from './components/DateHeader';
 import { IncomesProvider } from './IncomesContext';
 import { DateProvider } from './DateContext';
+import BasicDatePicker from './components/DatePicker';
 // import { FilteredIncomesProvider } from './IncomesContext';
 
 // しょうすけの例文
@@ -43,7 +44,6 @@ function App() {
   return (
     <div className="App">
         <DateProvider>
-
             <DateHeader  date={date} setDate={setDate}/>
             <IncomesProvider>
               <IncomeForm 
@@ -57,11 +57,9 @@ function App() {
                 setDate={setDate}
                 filteredIncomes={filteredIncomes}
                 setFilteredIncomes={setFilteredIncomes}
-
               />
             </IncomesProvider>
-
-
+            <BasicDatePicker />
         </DateProvider>
 
           {/* <IncomeResult 
