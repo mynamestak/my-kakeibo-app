@@ -11,17 +11,4 @@ export const IncomesProvider = (props) => {
             {props.children}
         </IncomesContext.Provider>
     );
-} 
-
-
-// export const filteredIncomesContext = createContext();
-
-// export const FilteredIncomesProvider = (props) => {
-//     const [filteredIncomes, setFilteredIncomes] = useState([]);
-
-//     return (
-//         <filteredIncomesContext.Provider value={[filteredIncomes, setFilteredIncomes]}>
-//             {props.children}
-//         </filteredIncomesContext.Provider>
-//     )
-// }
+}

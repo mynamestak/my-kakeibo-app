@@ -1,5 +1,7 @@
-import React, {useContext} from 'react';
-import { DateContext } from '../DateContext';
+import React from 'react';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 const DateHeader = ({date, setDate}) => {
 
@@ -26,9 +28,13 @@ const DateHeader = ({date, setDate}) => {
 
     return(
         <div>
-            <p>{year}年{month}月の収支を表示しています。</p>
-            <button onClick={setPrevMonth}>前月</button>
-            <button onClick={setNextMonth}>次月</button>
+            <Box sx={{display:'flex',
+                justifyContent:'center',
+                marginY:'16px'}}>
+                <Button sx={{marginX:3}} variant='contained' onClick={setPrevMonth}>前月</Button>
+                <Typography variant='h4' component='h2'>{year}年{month}月</Typography>
+                <Button sx={{marginX:3}} variant='contained' onClick={setNextMonth}>次月</Button>
+            </Box>
         </div>
     );
 }

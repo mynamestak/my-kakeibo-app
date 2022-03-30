@@ -3,18 +3,17 @@ import React, { useState } from 'react';
 import IncomeForm from './components/IncomeForm';
 import IncomeLists from './components/IncomeLists';
 import IncomeResult from './components/IncomeResult';
-import ExpenseForm from './components/ExpenseForm';
-import ExpenseLists from './components/ExpenseLists';
-import ExpenseResult from './components/ExpenseResult';
-import Balance from './components/Balance';
+// import ExpenseForm from './components/ExpenseForm';
+// import ExpenseLists from './components/ExpenseLists';
+// import ExpenseResult from './components/ExpenseResult';
+// import Balance from './components/Balance';
 import DateHeader from './components/DateHeader';
 import { IncomesProvider } from './IncomesContext';
 import { DateProvider } from './DateContext';
-import BasicDatePicker from './components/DatePicker';
-// import { FilteredIncomesProvider } from './IncomesContext';
+import SearchAppBar from './components/AppBar';
 
 // しょうすけの例文
-import Todo from './components/Todo';
+// import Todo from './components/Todo';
 
 function App() {
 
@@ -22,6 +21,7 @@ function App() {
 
   const [date, setDate] = useState(new Date()); 
   const [filteredIncomes, setFilteredIncomes] = useState([]);
+  const [datePickerValue, setDatePickerValue] = useState(null);
 
 
   // 収入合計するためのstate
@@ -29,11 +29,11 @@ function App() {
   const [incomeAmounts, setIncomeAmounts] = useState([0]);
 
   // 支出
-  const [expenses, setExpenses] = useState([]);
+  // const [expenses, setExpenses] = useState([]);
 
   // 支出合計するためのstate
-  const [expenseAmounts, setExpenseAmounts] = useState([0]);
-  const [ expenseResult, setExpenseResult ] = useState(0);
+  // const [expenseAmounts, setExpenseAmounts] = useState([0]);
+  // const [ expenseResult, setExpenseResult ] = useState(0);
 
 
 
@@ -43,30 +43,36 @@ function App() {
 
   return (
     <div className="App">
+        <SearchAppBar />
         <DateProvider>
-            <DateHeader  date={date} setDate={setDate}/>
             <IncomesProvider>
-              <IncomeForm 
-                incomeAmounts={incomeAmounts}
+              <DateHeader  date={date} setDate={setDate}/>
+              <IncomeResult 
+                date={date}
+                incomeResult={incomeResult}
+                setIncomeResult={setIncomeResult}
                 setIncomeAmounts={setIncomeAmounts}
-              />
-              <IncomeLists 
-                incomeAmounts={incomeAmounts}
-                setIncomeAmounts={setIncomeAmounts}
-                date={date} 
-                setDate={setDate}
+                incomeAmounts={incomeAmounts} 
                 filteredIncomes={filteredIncomes}
-                setFilteredIncomes={setFilteredIncomes}
               />
+                <IncomeForm 
+                  date={date}
+                  datePickerValue={datePickerValue}
+                  setDatePickerValue={setDatePickerValue}
+                  incomeAmounts={incomeAmounts}
+                  setIncomeAmounts={setIncomeAmounts}
+                />
+                <IncomeLists 
+                  incomeAmounts={incomeAmounts}
+                  setIncomeAmounts={setIncomeAmounts}
+                  date={date} 
+                  setDate={setDate}
+                  filteredIncomes={filteredIncomes}
+                  setFilteredIncomes={setFilteredIncomes}
+                />
             </IncomesProvider>
-            <BasicDatePicker />
         </DateProvider>
 
-          {/* <IncomeResult 
-            incomeResult={incomeResult}
-            setIncomeResult={setIncomeResult}
-            incomeAmounts={incomeAmounts} 
-            /> */}
 
 
         

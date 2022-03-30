@@ -1,25 +1,23 @@
-import React, { useEffect } from 'react';
+import React, {useState, useContext, useEffect} from 'react';
+import { IncomesContext } from '../IncomesContext';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
-const IncomeTotal = ({incomeAmounts, incomeResult, setIncomeResult}) => {
+const IncomeResult = ({date, incomeAmounts, setIncomeAmounts, incomeResult, setIncomeResult, filteredIncomes}) => {
 
 
-    // useEffect(() => {
-    //     setIncomeResult(incomeAmounts.reduce(reducer));
-    // }, []);
+    const filteredIncomeAmounts = filteredIncomes.map(filteredIncomes => Number(filteredIncomes.incomeNum));
+    incomeResult = filteredIncomeAmounts.reduce((acc, cur) => acc += cur, 0);
 
-    useEffect(() => {
-        setIncomeResult(incomeAmounts.reduce(reducer));
-    }, [incomeAmounts]);
-
-    const reducer = (sum,currentValue) => sum + currentValue;
-
+    const month = date.getMonth() +1;
     
   
     return(
-        <div>
-            <p>あなたの収入は{incomeResult}です。</p>
-        </div>
+        <Box fixed sx={{backgroundColor:'lightslategray'}}>
+            <Typography sx={{color: 'white'}}>{month}月残高</Typography>
+            <Typography　variant='h3' componen='h3' sx={{color: 'white'}}>{incomeResult}円</Typography>
+        </Box>
     );
 }
 
-export default IncomeTotal; 
+export default IncomeResult; 

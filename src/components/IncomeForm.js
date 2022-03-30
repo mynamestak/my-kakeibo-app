@@ -1,8 +1,12 @@
 import React, {useState, useContext} from 'react';
 import { IncomesContext } from '../IncomesContext';
+import BasicDatePicker from './DatePicker';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
-
-const InputForm = ({incomeAmounts, setIncomeAmounts}) => {
+const InputForm = ({date, datePickerValue, setDatePickerValue, incomeAmounts, setIncomeAmounts}) => {
 
     const [incomes, setIncomes] = useContext(IncomesContext);
     const [incomeInputText, setIncomeInputText] = useState('');
@@ -17,12 +21,6 @@ const InputForm = ({incomeAmounts, setIncomeAmounts}) => {
     const incomeInputNumHandler = (e) => {
         setIncomeInputNum(e.target.value);
     }
-    const IncomeInputDayHandler = (e) => {
-        setIncomeInputDay(e.target.value);
-    }
-    const IncomeInputMonthHandler = (e) => {
-        setIncomeInputMonth(e.target.value);
-    }
 
     const incomeSubmitHandler = (e) => {
         e.preventDefault();
@@ -33,75 +31,53 @@ const InputForm = ({incomeAmounts, setIncomeAmounts}) => {
         setIncomeAmounts([
             ...incomeAmounts, parseInt(incomeInputNum)
         ]);
+
+
         setIncomeCount((prevCount) => prevCount + 1);
 
         setIncomeInputText('');
         setIncomeInputNum('');
         setIncomeInputDay('');
+        setDatePickerValue(null);
     }
     
     return(
-        <form onSubmit={incomeSubmitHandler}>
-            <p>収入を入力してください。</p>
-            <input 
-                id="income-input"
-                value={incomeInputText}
-                onChange={incomeInputHandler}></input>
-            <p>額を入力してください。</p>
-            <input
-                // num={incomeInputNum}
-                value={incomeInputNum}
-                onChange={incomeInputNumHandler}
-                ></input>
-            <p>日付を入力してください。</p>
-            <select onChange={IncomeInputMonthHandler}>
-                <option value={1}>1月</option>
-                <option value={2}>2月</option>
-                <option value={3}>3月</option>
-                <option value={4}>4月</option>
-                <option value={5}>5月</option>
-                <option value={6}>6月</option>
-                <option value={7}>7月</option>
-                <option value={8}>8月</option>
-                <option value={9}>9月</option>
-                <option value={10}>10月</option>
-                <option value={11}>11月</option>
-                <option value={12}>12月</option>
-                </select>
-            <select onChange={IncomeInputDayHandler}>
-                <option value={1}>1日</option>
-                <option value={2}>2日</option>
-                <option value={3}>3日</option>
-                <option value={4}>4日</option>
-                <option value={5}>5日</option>
-                <option value={6}>6日</option>
-                <option value={7}>7日</option>
-                <option value={8}>8日</option>
-                <option value={9}>9日</option>
-                <option value={10}>10日</option>
-                <option value={11}>11日</option>
-                <option value={12}>12日</option>
-                <option value={13}>13日</option>
-                <option value={14}>14日</option>
-                <option value={15}>15日</option>
-                <option value={16}>16日</option>
-                <option value={17}>17日</option>
-                <option value={18}>18日</option>
-                <option value={19}>19日</option>
-                <option value={20}>20日</option>
-                <option value={21}>21日</option>
-                <option value={22}>22日</option>
-                <option value={23}>23日</option>
-                <option value={24}>24日</option>
-                <option value={25}>25日</option>
-                <option value={26}>26日</option>
-                <option value={27}>27日</option>
-                <option value={28}>28日</option>
-                <option value={29}>29日</option>
-                <option value={30}>30日</option>
-                <option value={31}>31日</option>
-            </select>
-            <button>決定</button>
+        <form>
+            <Box sx={{display: 'flex', justifyContent: 'center', marginY:4, height: 30, marginX: 'auto'}}>
+                <Grid container spacing={2} sx={{justifyContent: 'center', alignItems: 'center'}}>
+                    <Grid item>
+                        <BasicDatePicker 
+                            setIncomeInputDay={setIncomeInputDay} 
+                            setIncomeInputMonth={setIncomeInputMonth}
+                            setDatePickerValue={setDatePickerValue}
+                            datePickerValue={datePickerValue}
+                        />
+                    </Grid>
+                    <Grid item sx={{display: 'flex'}}>
+                            <Typography variant='body1'marginRight={2}>収入内容</Typography>
+                            <input 
+                                id="income-input"
+                                value={incomeInputText}
+                                onChange={incomeInputHandler}>
+                            </input>
+                    </Grid>
+                    <Grid item sx={{display: 'flex'}}>
+                            <Typography 
+                                variant='body1' 
+                                marginRight={2} 
+                                marginTop={10}>金額</Typography>
+                            <input
+                                // num={incomeInputNum}
+                                value={incomeInputNum}
+                                onChange={incomeInputNumHandler}
+                                ></input>
+                    </Grid>
+                    
+                    <Grid item>
+                        <Button onClick={incomeSubmitHandler} variant='contained'>決定</Button>
+                    </Grid>
+                </Grid>
+            </Box>
         </form>
 );
 }

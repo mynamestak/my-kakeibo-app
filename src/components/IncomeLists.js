@@ -1,10 +1,9 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useEffect, useContext} from 'react';
 import IncomeList from './IncomeList';
 import { IncomesContext } from '../IncomesContext';
-// import { filteredIncomesContext } from '../IncomesContext';
-import { DateContext } from '../DateContext';
+import { Box, Typography } from '@material-ui/core';
 
-const IncomeLists = ({incomeAmounts, setIncomeAmounts, date, setDate, filteredIncomes, setFilteredIncomes}) => {
+const IncomeLists = ({incomeAmounts, setIncomeAmounts, date, filteredIncomes, setFilteredIncomes}) => {
 
 
     const [incomes, setIncomes] = useContext(IncomesContext);
@@ -20,8 +19,9 @@ const IncomeLists = ({incomeAmounts, setIncomeAmounts, date, setDate, filteredIn
       }, [incomes, date]);
     
     return(
-        <div>
-            <ul>
+        <Box sx={{marginTop:16}}>
+            {/* 登録したすべての収入表示 */}
+            {/* <ul>
                 {incomes.map(income => (
                     <IncomeList 
                         income={income}
@@ -37,9 +37,9 @@ const IncomeLists = ({incomeAmounts, setIncomeAmounts, date, setDate, filteredIn
                         incomeMonth={income.incomeMonth}
                     />
                 ))}
-            </ul>
-            <p>ここから下は{selectedMonth}月の収入リストです。</p>
-            <ul>
+            </ul> */}
+            <Typography varient='h3' component='h3'>{selectedMonth}月収入リスト</Typography>
+            <Box>
                 {filteredIncomes.map(income => (
                     <IncomeList 
                         income={income}
@@ -55,8 +55,8 @@ const IncomeLists = ({incomeAmounts, setIncomeAmounts, date, setDate, filteredIn
                         incomeMonth={income.incomeMonth}
                     />
                 ))}
-            </ul>
-        </div>
+            </Box>
+        </Box>
     );
 }
 

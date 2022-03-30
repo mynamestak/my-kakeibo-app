@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import { DateContext } from '../DateContext';
+import Box from '@mui/material/Box';
+import { Typography } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import DatePickerHandler from './DatePicker';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Grid from '@mui/material/Grid';
+
 
 const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeAmounts, setIncomeAmounts, id, incomeDay, incomeMonth}) => {
 
@@ -9,7 +15,6 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
     const [ editDayValue, setEditDayValue ] = useState(incomeDay);
     const [ editMonthValue, setEditMonthValue ] = useState(incomeMonth);
 
-    
 
     const incomeDeleteHandler = () => {
         setIncomes(incomes.filter(el => el.id !== income.id));
@@ -20,6 +25,7 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
         setIsEditting(id + 1); //←nullの状態から数字を入れるとtrueになる。
         setEditTextValue(incomeText);
         setEditNumValue(incomeNum);
+        // setDatePickerValue(datePickerValue);
     };
 
     //TextとNumは別々にしないと１つ変えると両方とも変更されてしまう。
@@ -48,76 +54,47 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
         setIncomeAmounts( //編集した額だけ配列内を入れ替える。
             incomeAmounts.map((incomeAmount, id) => (id === isEditting -1 ? Number(editNumValue) : incomeAmount))
         );
-
-   
     };
 
 
 
     return(
-        <div>
+        <Box>
             { !isEditting &&
-                <li>
-                    <span>{incomeMonth}月{incomeDay}日に{incomeText}</span>で<span>{incomeNum}円</span>稼ぎました。
-                    <button onClick={editToggle}>編集</button>
-                    <button onClick={incomeDeleteHandler}>削除</button>
-                </li>            
+            <Grid container spacing={2} style={{listStyle:'none', display: 'flex',justifyContent:'center', alignItems:'center', marginBottom: 16}}>
+                <Grid item sx={{display: 'flex'}}>
+                    <Typography variant='h6'>{incomeMonth}/{incomeDay}  {incomeText}  </Typography><Typography variant='h6'>+{incomeNum}円</Typography>
+                </Grid>
+                <Grid item>
+                    <ButtonGroup variant='text' aria-label="text button group">
+                        <Button variant='contained' color="success" onClick={editToggle}>編集</Button>
+                        <Button variant='contained' color="error" onClick={incomeDeleteHandler}>削除</Button>
+                    </ButtonGroup>
+                </Grid>
+            </Grid>           
             }
             { isEditting && 
-                <li>
-                    <select onChange={editMonthValueHandler} value={editMonthValue}>
-                        <option value={1}>1月</option>
-                        <option value={2}>2月</option>
-                        <option value={3}>3月</option>
-                        <option value={4}>4月</option>
-                        <option value={5}>5月</option>
-                        <option value={6}>6月</option>
-                        <option value={7}>7月</option>
-                        <option value={8}>8月</option>
-                        <option value={9}>9月</option>
-                        <option value={10}>10月</option>
-                        <option value={11}>11月</option>
-                        <option value={12}>12月</option>
-                    </select>
-                    <select onChange={editDayValueHandler} value={editDayValue}>
-                        <option value={1}>1日</option>
-                        <option value={2}>2日</option>
-                        <option value={3}>3日</option>
-                        <option value={4}>4日</option>
-                        <option value={5}>5日</option>
-                        <option value={6}>6日</option>
-                        <option value={7}>7日</option>
-                        <option value={8}>8日</option>
-                        <option value={9}>9日</option>
-                        <option value={10}>10日</option>
-                        <option value={11}>11日</option>
-                        <option value={12}>12日</option>
-                        <option value={13}>13日</option>
-                        <option value={14}>14日</option>
-                        <option value={15}>15日</option>
-                        <option value={16}>16日</option>
-                        <option value={17}>17日</option>
-                        <option value={18}>18日</option>
-                        <option value={19}>19日</option>
-                        <option value={20}>20日</option>
-                        <option value={21}>21日</option>
-                        <option value={22}>22日</option>
-                        <option value={23}>23日</option>
-                        <option value={24}>24日</option>
-                        <option value={25}>25日</option>
-                        <option value={26}>26日</option>
-                        <option value={27}>27日</option>
-                        <option value={28}>28日</option>
-                        <option value={29}>29日</option>
-                        <option value={30}>30日</option>
-                        <option value={31}>31日</option>
-                    </select>に
-                    <input onChange={editTextValueHandler} value={editTextValue}></input>で
-                    <input onChange={editNumValueHandler} value={editNumValue}></input>円稼ぎました。
-                    <button onClick={onHandleEdit}>決定</button>
-                </li>     
+                <Grid container spacing={2} style={{listStyle:'none', display: 'flex', justifyContent:'center', alignItems:'center', marginBottom: 4}}>
+                    <Grid item>
+                        <DatePickerHandler 
+                            setEditDayValue={setEditDayValue}
+                            setEditMonthValue={setEditMonthValue}
+                            editMonthValue={editMonthValue}
+                            isEditting={isEditting}
+                        />
+                    </Grid>
+                    <Grid item>
+                        <input onChange={editTextValueHandler} value={editTextValue}></input>
+                    </Grid>
+                    <Grid item>
+                        <input onChange={editNumValueHandler} value={editNumValue}></input>円
+                    </Grid>
+                    <Grid item>
+                        <Button variant='contained' color='success'onClick={onHandleEdit}>決定</Button>
+                    </Grid>
+                </Grid>
             }
-        </div>
+        </Box>
     );
 }
 
