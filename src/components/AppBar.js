@@ -7,6 +7,8 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+import Home from '../pages/Home';
 
 
 
@@ -21,7 +23,7 @@ export default function SearchAppBar() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            会計簿アプリ
+              <Link to='/'>会計簿アプリ</Link>
           </Typography>
         </Toolbar>
       </AppBar>

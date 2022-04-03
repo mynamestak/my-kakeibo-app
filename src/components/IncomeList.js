@@ -5,6 +5,9 @@ import Button from '@mui/material/Button';
 import DatePickerHandler from './DatePicker';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Grid from '@mui/material/Grid';
+import { TextField } from '@mui/material';
+import { Paper } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 
 const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeAmounts, setIncomeAmounts, id, incomeDay, incomeMonth}) => {
@@ -25,7 +28,6 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
         setIsEditting(id + 1); //←nullの状態から数字を入れるとtrueになる。
         setEditTextValue(incomeText);
         setEditNumValue(incomeNum);
-        // setDatePickerValue(datePickerValue);
     };
 
     //TextとNumは別々にしないと１つ変えると両方とも変更されてしまう。
@@ -34,12 +36,6 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
     };
     const editNumValueHandler = (e) => {
         setEditNumValue(e.target.value);
-    }
-    const editDayValueHandler = (e) => {
-        setEditDayValue(e.target.value);
-    }
-    const editMonthValueHandler = (e) => {
-        setEditMonthValue(e.target.value);
     }
 
     const onHandleEdit = () => {
@@ -67,11 +63,12 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
                 </Grid>
                 <Grid item>
                     <ButtonGroup variant='text' aria-label="text button group">
-                        <Button variant='contained' color="success" onClick={editToggle}>編集</Button>
+                        <Button variant='contained' color="success" onClick={editToggle}>クイック編集</Button>
                         <Button variant='contained' color="error" onClick={incomeDeleteHandler}>削除</Button>
+                        <Button variant='contained' color="secondary"><Link sx={{color: 'white'}} to={`/income/${id}`} >詳細</Link></Button>
                     </ButtonGroup>
                 </Grid>
-            </Grid>           
+            </Grid>   
             }
             { isEditting && 
                 <Grid container spacing={2} style={{listStyle:'none', display: 'flex', justifyContent:'center', alignItems:'center', marginBottom: 4}}>
@@ -84,10 +81,10 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
                         />
                     </Grid>
                     <Grid item>
-                        <input onChange={editTextValueHandler} value={editTextValue}></input>
+                        <TextField size='small' onChange={editTextValueHandler} value={editTextValue}></TextField>
                     </Grid>
                     <Grid item>
-                        <input onChange={editNumValueHandler} value={editNumValue}></input>円
+                        <TextField size='small' onChange={editNumValueHandler} value={editNumValue}></TextField>円
                     </Grid>
                     <Grid item>
                         <Button variant='contained' color='success'onClick={onHandleEdit}>決定</Button>

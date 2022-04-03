@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import { TextField } from '@mui/material';
 
 const InputForm = ({date, datePickerValue, setDatePickerValue, incomeAmounts, setIncomeAmounts}) => {
 
@@ -54,25 +55,23 @@ const InputForm = ({date, datePickerValue, setDatePickerValue, incomeAmounts, se
                         />
                     </Grid>
                     <Grid item sx={{display: 'flex'}}>
-                            <Typography variant='body1'marginRight={2}>収入内容</Typography>
-                            <input 
+                            <TextField 
+                                label='収入内容'
+                                size='small'
                                 id="income-input"
                                 value={incomeInputText}
                                 onChange={incomeInputHandler}>
-                            </input>
+                            </TextField>
                     </Grid>
                     <Grid item sx={{display: 'flex'}}>
-                            <Typography 
-                                variant='body1' 
-                                marginRight={2} 
-                                marginTop={10}>金額</Typography>
-                            <input
+                            <TextField
+                                label='金額'
+                                size='small'
                                 // num={incomeInputNum}
                                 value={incomeInputNum}
                                 onChange={incomeInputNumHandler}
-                                ></input>
+                                ></TextField>
                     </Grid>
-                    
                     <Grid item>
                         <Button onClick={incomeSubmitHandler} variant='contained'>決定</Button>
                     </Grid>

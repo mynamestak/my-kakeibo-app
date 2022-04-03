@@ -1,7 +1,7 @@
 import React, { useEffect, useContext} from 'react';
 import IncomeList from './IncomeList';
 import { IncomesContext } from '../IncomesContext';
-import { Box, Typography } from '@material-ui/core';
+import { Box, Container, Typography } from '@material-ui/core';
 
 const IncomeLists = ({incomeAmounts, setIncomeAmounts, date, filteredIncomes, setFilteredIncomes}) => {
 
@@ -17,6 +17,7 @@ const IncomeLists = ({incomeAmounts, setIncomeAmounts, date, filteredIncomes, se
     useEffect(() => {
         filterHandler();
       }, [incomes, date]);
+
     
     return(
         <Box sx={{marginTop:16}}>
@@ -38,8 +39,13 @@ const IncomeLists = ({incomeAmounts, setIncomeAmounts, date, filteredIncomes, se
                     />
                 ))}
             </ul> */}
-            <Typography varient='h3' component='h3'>{selectedMonth}月収入リスト</Typography>
-            <Box>
+            <Box sx={{backgroundColor:'lightGreen', minHeight: '5vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <Typography 
+                    varient='h3' 
+                    component='h3' 
+                    sx={{color: 'white'}}>{selectedMonth}月収入リスト</Typography>
+            </Box>
+            <Box sx={{marginTop: '16px'}}>
                 {filteredIncomes.map(income => (
                     <IncomeList 
                         income={income}
