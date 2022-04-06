@@ -2,8 +2,8 @@ import './App.css';
 import React from 'react';
 import SearchAppBar from './components/AppBar';
 import Home from './pages/Home';
-import IncomeDetail from './pages/IncomeDetail';
-import { IncomesProvider } from './IncomesContext';
+import ItemDetail from './pages/ItemDetail';
+import { ItemsProvider } from './ItemsContext';
 import { DateProvider } from './DateContext';
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
@@ -19,12 +19,12 @@ function App() {
         <Router>
           <SearchAppBar />
           <DateProvider>
-            <IncomesProvider>
+            <ItemsProvider>
                 <Routes>
                   <Route path='/' exact element={<Home />}/>
-                  <Route path='/income/:id' element={<IncomeDetail />}/>
+                  <Route path='/item/:id' element={<ItemDetail />}/>
                 </Routes>
-            </IncomesProvider>
+            </ItemsProvider>
           </DateProvider>
         </Router>
     </div>

@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from "react";
+import React , { useState } from "react";
 import {TextField} from '@mui/material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -6,7 +6,7 @@ import DatePicker from '@mui/lab/DatePicker';
 import jalocale from 'date-fns/locale/ja'; 
 
 
-export default function BasicDatePicker({ setIncomeInputMonth, setIncomeInputDay, setEditDayValue, setEditMonthValue, isEditting}) {
+export default function BasicDatePicker({ setItemInputMonth, setItemInputDay, setEditDayValue, setEditMonthValue, isEditting}) {
   const [value, setValue] = useState(null);
 
 
@@ -16,8 +16,8 @@ export default function BasicDatePicker({ setIncomeInputMonth, setIncomeInputDay
     }
     if(!isEditting){
       setValue(e);
-      setIncomeInputMonth(e.getMonth()+1);
-      setIncomeInputDay(e.getDate());
+      setItemInputMonth(e.getMonth()+1);
+      setItemInputDay(e.getDate());
     }
     if(isEditting){
       setValue(value);

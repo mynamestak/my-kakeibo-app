@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import IncomeForm from '../components/IncomeForm';
-import IncomeLists from '../components/IncomeLists';
-import IncomeResult from '../components/IncomeResult';
-// import ExpenseForm from '../components/ExpenseForm';
-// import ExpenseLists from '../components/ExpenseLists';
-// import ExpenseResult from '../components/ExpenseResult';
+import AddItem from '../components/AddItem';
+import ItemLists from '../components/ItemLists';
+import Balance from '../components/Balance';
 // import Balance from '../components/Balance';
 import DateHeader from '../components/DateHeader';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
@@ -17,70 +14,44 @@ const Home = () => {
 
 
   const [date, setDate] = useState(new Date()); 
-  const [filteredIncomes, setFilteredIncomes] = useState([]);
+  const [filteredMonthItems, setFilteredMonthItems] = useState([]);
   const [datePickerValue, setDatePickerValue] = useState(null);
+  const [filteredIncomeItems, setFilteredIncomeItems] = useState([]);
+  const [filteredExpenseItems, setFilteredExpenseItems] = useState([]);
 
 
   // 収入合計するためのstate
-  const [incomeResult, setIncomeResult] = useState(0);
-  const [incomeAmounts, setIncomeAmounts] = useState([0]);
+  const [balanceResult, setBalanceResult] = useState(0);
 
-  // 支出
-  // const [expenses, setExpenses] = useState([]);
 
-  // 支出合計するためのstate
-  // const [expenseAmounts, setExpenseAmounts] = useState([0]);
-  // const [ expenseResult, setExpenseResult ] = useState(0);
+
 
 
   return (
     <div className="App">
               <DateHeader  date={date} setDate={setDate}/>
-              <IncomeResult 
+              <Balance 
                 date={date}
-                incomeResult={incomeResult}
-                setIncomeResult={setIncomeResult}
-                setIncomeAmounts={setIncomeAmounts}
-                incomeAmounts={incomeAmounts} 
-                filteredIncomes={filteredIncomes}
+                balanceResult={balanceResult}
+                filteredIncomeItems={filteredIncomeItems}
+                filteredExpenseItems={filteredExpenseItems}
               />
-                <IncomeForm 
+                <AddItem 
                   date={date}
                   datePickerValue={datePickerValue}
                   setDatePickerValue={setDatePickerValue}
-                  incomeAmounts={incomeAmounts}
-                  setIncomeAmounts={setIncomeAmounts}
                 />
-                <IncomeLists 
-                  incomeAmounts={incomeAmounts}
-                  setIncomeAmounts={setIncomeAmounts}
+                <ItemLists 
                   date={date} 
                   setDate={setDate}
-                  filteredIncomes={filteredIncomes}
-                  setFilteredIncomes={setFilteredIncomes}
+                  filteredMonthItems={filteredMonthItems}
+                  setFilteredMonthItems={setFilteredMonthItems}
+                  filteredIncomeItems={filteredIncomeItems}
+                  setFilteredIncomeItems={setFilteredIncomeItems}
+                  filteredExpenseItems={filteredExpenseItems}
+                  setFilteredExpenseItems={setFilteredExpenseItems}
                 />
-
-
-
         
-      {/* <ExpenseForm
-        setExpenses={setExpenses}
-        expenses={expenses}
-        expenseAmounts={expenseAmounts}
-        setExpenseAmounts={setExpenseAmounts}/>
-      <ExpenseLists 
-        expenses={expenses}
-        setExpenses={setExpenses}
-        expenseAmounts={expenseAmounts}
-        setExpenseAmounts={setExpenseAmounts}
-        />
-      <ExpenseResult 
-        expenseAmounts={expenseAmounts} 
-        expenseResult={expenseResult}
-        setExpenseResult={setExpenseResult}
-        />
-      */}
-
       {/* <Balance incomeAmounts={incomeAmounts} expenseAmounts={expenseAmounts}/>  */}
 
       {/* <Todo/> */}

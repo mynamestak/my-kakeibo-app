@@ -10,24 +10,23 @@ import { Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 
-const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeAmounts, setIncomeAmounts, id, incomeDay, incomeMonth}) => {
+const ItemList = ({item, items, itemText, setItems, itemNum, itemAmounts, setItemAmounts, id, itemDay, itemMonth, inputType}) => {
 
     const [ isEditting, setIsEditting ] = useState(null);
     const [ editTextValue, setEditTextValue ] = useState('');
     const [ editNumValue, setEditNumValue ] = useState('');
-    const [ editDayValue, setEditDayValue ] = useState(incomeDay);
-    const [ editMonthValue, setEditMonthValue ] = useState(incomeMonth);
+    const [ editDayValue, setEditDayValue ] = useState(itemDay);
+    const [ editMonthValue, setEditMonthValue ] = useState(itemMonth);
 
 
-    const incomeDeleteHandler = () => {
-        setIncomes(incomes.filter(el => el.id !== income.id));
-        setIncomeAmounts(incomeAmounts.filter(el => el !== Number(incomeNum)));
+    const itemDeleteHandler = () => {
+        setItems(items.filter(el => el.id !== item.id));
     }
     
     const editToggle = () => {
         setIsEditting(id + 1); //←nullの状態から数字を入れるとtrueになる。
-        setEditTextValue(incomeText);
-        setEditNumValue(incomeNum);
+        setEditTextValue(itemText);
+        setEditNumValue(itemNum);
     };
 
     //TextとNumは別々にしないと１つ変えると両方とも変更されてしまう。
@@ -39,18 +38,19 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
     }
 
     const onHandleEdit = () => {
-        const updated = incomes.map((income) => {
-            if(income.id === isEditting - 1){ //配列の数字とIncomeFormで作成するidを比較する。
-                income = {incomeText: editTextValue, incomeNum: editNumValue, id: id, incomeDay: editDayValue, incomeMonth: editMonthValue}; // incomeNumとincomeTextだけ変更を反映する。
+        const updated = items.map((item) => {
+            if(item.id === isEditting - 1){ //配列の数字とItemFormで作成するidを比較する。
+                item = {itemText: editTextValue, itemNum: editNumValue, id: id, itemDay: editDayValue, itemMonth: editMonthValue, inputType: inputType}; 
             }
-            return income;
+            return item;
         })
-        setIncomes(updated); // 変更した配列丸ごとで更新
+        setItems(updated); // 変更した配列丸ごとで更新
         setIsEditting(false);  
-        setIncomeAmounts( //編集した額だけ配列内を入れ替える。
-            incomeAmounts.map((incomeAmount, id) => (id === isEditting -1 ? Number(editNumValue) : incomeAmount))
+        setItemAmounts( //編集した額だけ配列内のオブジェクト変更
+            itemAmounts.map((itemAmount, id) => (id === isEditting -1 ? Number(editNumValue) : itemAmount))
         );
     };
+
 
 
 
@@ -59,13 +59,13 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
             { !isEditting &&
             <Grid container spacing={2} style={{listStyle:'none', display: 'flex',justifyContent:'center', alignItems:'center', marginBottom: 16}}>
                 <Grid item sx={{display: 'flex'}}>
-                    <Typography variant='h6'>{incomeMonth}/{incomeDay}  {incomeText}  </Typography><Typography variant='h6'>+{incomeNum}円</Typography>
+                    <Typography variant='h6'>{itemMonth} / {itemDay}'     '{itemText}</Typography><Typography variant='h6'>'   '{itemNum}円</Typography>
                 </Grid>
                 <Grid item>
                     <ButtonGroup variant='text' aria-label="text button group">
                         <Button variant='contained' color="success" onClick={editToggle}>クイック編集</Button>
-                        <Button variant='contained' color="error" onClick={incomeDeleteHandler}>削除</Button>
-                        <Button variant='contained' color="secondary"><Link sx={{color: 'white'}} to={`/income/${id}`} >詳細</Link></Button>
+                        <Button variant='contained' color="error" onClick={itemDeleteHandler}>削除</Button>
+                        <Button variant='contained' color="primary"><Link sx={{color: 'white'}} to={`/item/${id}`} >詳細</Link></Button>
                     </ButtonGroup>
                 </Grid>
             </Grid>   
@@ -95,4 +95,4 @@ const IncomeList = ({income, incomes, incomeText, setIncomes, incomeNum, incomeA
     );
 }
 
-export default IncomeList;
+export default ItemList;
