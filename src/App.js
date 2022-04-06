@@ -3,8 +3,8 @@ import React from 'react';
 import SearchAppBar from './components/AppBar';
 import Home from './pages/Home';
 import ItemDetail from './pages/ItemDetail';
-import { ItemsProvider } from './ItemsContext';
-import { DateProvider } from './DateContext';
+import { ItemsProvider } from './context/ItemsContext';
+import { DateProvider } from './context/DateContext';
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 

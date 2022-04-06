@@ -1,12 +1,10 @@
-import React, {useState, useContext, useEffect, createContext} from 'react';
-import { ItemsContext } from '../ItemsContext';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 const Balance = ({date, filteredIncomeItems, filteredExpenseItems }) => {
 
 
-    const [items, setItems] = useContext(ItemsContext);
 
     const month = date.getMonth() +1;
 
@@ -17,8 +15,6 @@ const Balance = ({date, filteredIncomeItems, filteredExpenseItems }) => {
     // const expenseReducer = (sum,currentValue) => sum + currentValue
     // const expenseResult = expenseAmounts.reduce(expenseReducer);
     // const balance = incomeResult - expenseResult;
-
-
 
 
       const incomeTotal = filteredIncomeItems.reduce((sum, element) => {

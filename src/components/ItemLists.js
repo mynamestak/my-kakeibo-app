@@ -1,12 +1,12 @@
 import React, { useEffect, useContext} from 'react';
 import ItemList from './ItemList';
-import { ItemsContext } from '../ItemsContext';
-import { Box, Container, Typography } from '@material-ui/core';
+import { ItemsContext } from '../context/ItemsContext';
+import { Box, Typography } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 
 
 
-const ItemLists = ({itemAmounts, setItemAmounts, date, filteredIncomeItems, setFilteredIncomeItems, filteredExpenseItems, setFilteredExpenseItems}) => {
+const ItemLists = ({date, filteredIncomeItems, setFilteredIncomeItems, filteredExpenseItems, setFilteredExpenseItems}) => {
 
 
     const [items, setItems] = useContext(ItemsContext);
@@ -75,10 +75,9 @@ const ItemLists = ({itemAmounts, setItemAmounts, date, filteredIncomeItems, setF
                                 id={item.id}
                                 itemNum={item.itemNum}
                                 setItems={setItems}
-                                itemAmounts={itemAmounts}
-                                setItemAmounts={setItemAmounts}
                                 itemDay={item.itemDay}
                                 itemMonth={item.itemMonth}
+                                inputType={item.inputType}
                             />
                         ))}
                     </Box>
@@ -95,10 +94,9 @@ const ItemLists = ({itemAmounts, setItemAmounts, date, filteredIncomeItems, setF
                                 id={item.id}
                                 itemNum={item.itemNum}
                                 setItems={setItems}
-                                itemAmounts={itemAmounts}
-                                setItemAmounts={setItemAmounts}
                                 itemDay={item.itemDay}
                                 itemMonth={item.itemMonth}
+                                inputType={item.inputType}
                             />
                         ))}
                     </Box>

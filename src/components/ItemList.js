@@ -6,11 +6,10 @@ import DatePickerHandler from './DatePicker';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Grid from '@mui/material/Grid';
 import { TextField } from '@mui/material';
-import { Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 
-const ItemList = ({item, items, itemText, setItems, itemNum, itemAmounts, setItemAmounts, id, itemDay, itemMonth, inputType}) => {
+const ItemList = ({item, items, itemText, setItems, itemNum, id, itemDay, itemMonth, inputType}) => {
 
     const [ isEditting, setIsEditting ] = useState(null);
     const [ editTextValue, setEditTextValue ] = useState('');
@@ -46,9 +45,6 @@ const ItemList = ({item, items, itemText, setItems, itemNum, itemAmounts, setIte
         })
         setItems(updated); // 変更した配列丸ごとで更新
         setIsEditting(false);  
-        setItemAmounts( //編集した額だけ配列内のオブジェクト変更
-            itemAmounts.map((itemAmount, id) => (id === isEditting -1 ? Number(editNumValue) : itemAmount))
-        );
     };
 
 

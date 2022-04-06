@@ -1,8 +1,6 @@
 import React, {useState, useContext} from 'react';
-import { ItemsContext } from '../ItemsContext';
+import { ItemsContext } from '../context/ItemsContext';
 import BasicDatePicker from './DatePicker';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { TextField } from '@mui/material';
@@ -11,7 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 
-const AddItem = ({date, datePickerValue, setDatePickerValue, incomeAmounts, setIncomeAmounts, expenseAmounts, setExpenseAmounts}) => {
+const AddItem = ({ datePickerValue, setDatePickerValue}) => {
 
     const [items, setItems] = useContext(ItemsContext);
     const [itemInputText, setItemInputText] = useState('');
@@ -36,20 +34,6 @@ const AddItem = ({date, datePickerValue, setDatePickerValue, incomeAmounts, setI
         setItems([
             ...items, {itemText: itemInputText, itemNum: itemInputNum, id:itemCount, itemMonth: Number(itemInputMonth), itemDay: itemInputDay, inputType: inputType}
         ]);
-
-        // setItemAmounts([
-        //     ...itemAmounts, parseInt(itemInputNum)
-        // ]);
-        // if(inputType === 'income'){
-        //     setIncomeAmounts([
-        //         ...incomeAmounts, Number(itemInputNum)
-        //     ]);
-        // }
-        // if(inputType === 'expense'){
-        //     setExpenseAmounts([
-        //         ...expenseAmounts, Number(itemInputNum)
-        //     ]);
-        // }
 
         setItemCount((prevCount) => prevCount + 1);
 
@@ -100,7 +84,6 @@ const AddItem = ({date, datePickerValue, setDatePickerValue, incomeAmounts, setI
                             <TextField
                                 label='金額'
                                 size='small'
-                                // num={incomeInputNum}
                                 value={itemInputNum}
                                 onChange={itemInputNumHandler}
                                 ></TextField>

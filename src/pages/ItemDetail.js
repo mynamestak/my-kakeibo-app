@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { ItemsContext } from '../ItemsContext';
+import { ItemsContext } from '../context/ItemsContext';
 import { useParams } from 'react-router';
 
 
