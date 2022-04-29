@@ -13,6 +13,8 @@ import Grid from '@mui/material/Grid';
 import { TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+console.log("hello")
+
 
 const ItemList = ({itemText, itemNum, id, itemDay, itemMonth, inputType}) => {
 
@@ -45,6 +47,7 @@ const ItemList = ({itemText, itemNum, id, itemDay, itemMonth, inputType}) => {
     // const editNumValueHandler = (e) => {
     //     setEditNumValue(e.target.value);
     // }
+    
 
     // const onHandleEdit = () => {
     //     const updated = items.map((item) => {
